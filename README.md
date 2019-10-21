@@ -1,7 +1,7 @@
 # Asayake (Sunrise) Player
 A simple, modular and highly customizable HTML 5 audio player for WordPress with support for playlists. 
 
-![screenshot](https://github.com/matdombrock/asayake-player/blob/master/img/pause.png?raw=true)
+![screenshot](https://github.com/matdombrock/asayake-player/blob/master/img/aplayer.png?raw=true)
 ## Features
 * Supports files directly from your WordPress install any other URL.
 * Easy to use shortcodes.
