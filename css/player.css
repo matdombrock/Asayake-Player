@@ -52,6 +52,7 @@
     cursor: pointer;
     transition:all 0.5s;
     border-bottom:2px solid rgb(177, 177, 177);
+    font-size:0.75rem;
 }
 .aplayer-playlist-item:hover{
     background:rgb(138, 138, 138);

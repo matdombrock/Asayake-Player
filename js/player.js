@@ -19,8 +19,6 @@ var aplayer = function(){
     }
     this.addPlaylistItem = function(playlistID,url,artist,title,album){
         //console.log("adding playlist item");
-        
-        
         var playlistItem = {
             url : url,
             artist : artist,
@@ -176,9 +174,13 @@ var aplayer = function(){
     }
 
     this.generatePlayer = function(url,title,artist,album,playerID,isPlaylist = "false"){
-        var ret = "<div><strong id='"+playerID+"-title'>"+title+" - "+artist+"</strong></div>";
-        ret += "<div style='font-size:0.8rem;' id='"+playerID+"-album'>"+album+"</div>";
-        ret += "<br>";
+        var ret = "";
+        if(title!=null && title!=""){
+            ret += "<div><strong id='"+playerID+"-title'>"+title+" - "+artist+"</strong></div>";
+            ret += "<div style='font-size:0.8rem;' id='"+playerID+"-album'>"+album+"</div>";
+            ret += "<br>";
+        }
+        
         ret += "<audio id='"+playerID+"' preload='metadata' onloadedmetadata='aplayerInstance.initPlayer(\""+playerID+"\");' xonended='aplayerInstance.stateFinishedPlaying(\"TEST\")';>";//was oncanplay
         ret += "<source src='"+url+"' type='audio/mpeg'>";
         ret += "Your browser does not support the audio element.";
@@ -221,7 +223,7 @@ var aplayer = function(){
     this.render_playlist_item = function(playlistID,playlistItemIndex){
         var playlist_wrap = document.getElementById(playlistID+"-playlist");
         ret = "<div id='"+playlistID+"-item-"+playlistItemIndex+"' class='aplayer-playlist-item' onclick=\"aplayerInstance.playlist_loadTrack('"+playlistID+"',"+playlistItemIndex+")\">";
-        ret +=  this.playlists[playlistID][playlistItemIndex].title;
+        ret +=  this.playlists[playlistID][playlistItemIndex].title+" - "+this.playlists[playlistID][playlistItemIndex].artist;
         ret += "</div>";
         playlist_wrap.innerHTML += ret;
     }

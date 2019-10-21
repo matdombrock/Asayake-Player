@@ -44,3 +44,4 @@ function aplayerShortcodePlaylistItem($atts){
     $ret = "<script>aplayerInstance.addPlaylistItem('$playlistID','$url','$artist','$title','$album');</script>";
     return $ret;
 }
+?>
