@@ -19,7 +19,7 @@ A simple, modular and highly customizable HTML 5 audio player for WordPress with
 * Pure vanilla Javascript. No external libraries or requirements.
 
 ## Usage
-Download and install the project to your ```plugins``` directory.
+Download and install the project to the directory ```plugins/asayake/```.
 
 Activate the plugin.
 
