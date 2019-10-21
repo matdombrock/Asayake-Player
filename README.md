@@ -4,15 +4,19 @@ A simple, modular and highly customizable HTML 5 audio player for WordPress with
 ![screenshot](https://github.com/matdombrock/asayake-player/blob/master/img/aplayer.png?raw=true)
 ## Features
 * Supports files directly from your WordPress install any other URL.
+* No configuration required.
 * Easy to use shortcodes.
 * Full support for both playlists & stand-alone players.
+* Playlists automatically play the next song on the list.
+* Supports timeline scrubbing.
 * "Smart Playback" ensures only one audio source can be playing on the page at once.
 * Integrates with almost any theme.
 * Highly "themeable" with custom CSS.
+* Works with Gutenberg, Classic Editor and most page builders.
 
 ## Nerd Features
 * Fully HTML5 Compliant. Uses the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API).
-* Pure vanilla PHP+JS. No external libraries or requirements.
+* Pure vanilla Javascript. No external libraries or requirements.
 
 ## Usage
 Download and install the project to your ```plugins``` directory.
