@@ -186,8 +186,8 @@ var aplayer = function(){
         ret += "Your browser does not support the audio element.";
         ret += "</audio>";
 
-        ret += "<button class='aplayer-btn' id='"+playerID+"-pp' onclick='aplayerInstance.stateToggle(\""+playerID+"\")'> <img src='"+this.images["play"]+"'> </button>";
-        ret += "<button class='aplayer-btn' id='"+playerID+"-stop' onclick='aplayerInstance.stateStop(\""+playerID+"\")'><img src='"+this.images["stop"]+"'></button>";
+        ret += "<span class='aplayer-btn' id='"+playerID+"-pp' onclick='aplayerInstance.stateToggle(\""+playerID+"\")'> <img src='"+this.images["play"]+"'> </span>";
+        ret += "<span class='aplayer-btn' id='"+playerID+"-stop' onclick='aplayerInstance.stateStop(\""+playerID+"\")'><img src='"+this.images["stop"]+"'></span>";
         
         ret += "<div style='float:right; font-size:1.5rem;'>";
         ret += "<span id='"+playerID+"-ctime'>00:00</span>";
@@ -200,7 +200,7 @@ var aplayer = function(){
     </div>`;
 
         if(isPlaylist == "true"){
-            ret += "<div id='"+playerID+"-playlist'>";
+            ret += "<div class='aplayer-playlist-wrap' id='"+playerID+"-playlist'>";
             //ret += "";
             ret += "</div>";
         }

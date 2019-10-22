@@ -3,11 +3,21 @@
     border:1px solid rgb(177, 177, 177);
     padding:1rem;
     font-family: 'Roboto', sans-serif;
+    font-size:1rem;
 }
-.aplayer-btn{
-    min-width:3rem;
-    min-height:3rem;
-    border-radius: 0px;
+.aplayer-btn {
+    min-width: 4rem;
+    text-align:center;
+    min-height: 3rem;
+    border-radius: 0;
+    background-color: #4663ff;
+    padding: 1rem;
+    cursor: pointer;
+    transition:all 0.5s;
+    display:inline-block;
+}
+.aplayer-btn:hover{
+    background-color: #3d52c4;
 }
 .aplayer-btn img{
     max-width:1rem;
@@ -63,4 +73,7 @@
 }
 .aplayer-active-playlist-item:hover{
     background:rgb(48, 94, 161)!important;
+}
+.aplayer-playlist-wrap{
+    margin-top:1rem;
 }
