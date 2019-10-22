@@ -187,7 +187,7 @@ var aplayer = function(){
         ret += "</audio>";
 
         ret += "<button class='aplayer-btn' id='"+playerID+"-pp' onclick='aplayerInstance.stateToggle(\""+playerID+"\")'> <img src='"+this.images["play"]+"'> </button>";
-        ret += "<button class='aplayer-btn id='"+playerID+"-stop' onclick='aplayerInstance.stateStop(\""+playerID+"\")'><img src='"+this.images["stop"]+"'></button>";
+        ret += "<button class='aplayer-btn' id='"+playerID+"-stop' onclick='aplayerInstance.stateStop(\""+playerID+"\")'><img src='"+this.images["stop"]+"'></button>";
         
         ret += "<div style='float:right; font-size:1.5rem;'>";
         ret += "<span id='"+playerID+"-ctime'>00:00</span>";
