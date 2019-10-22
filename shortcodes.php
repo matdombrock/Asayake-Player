@@ -28,7 +28,7 @@ function aplayerShortcodePlaylist($atts){
     $img_playBtn = plugins_url( '/img/play.png', __FILE__ );
     $img_stopBtn = plugins_url( '/img/stop.png', __FILE__ );
 
-    $ret .= "<div class='aplayer-wrap' id='$playerID-wrap'>";
+    $ret = "<div class='aplayer-wrap' id='$playerID-wrap'>";
     $ret .= "Loading Player...";
     $ret .= "</div>";
     $ret .= "<script>aplayerInstance.generatePlayer('#', '#', '#', '#', '$playerID','true');</script>";

@@ -7,11 +7,15 @@
  * Author: Mathieu Dombrock
  * Author URI: https://mzero.space
  */
-wp_enqueue_script( 'aplayer-js', plugins_url( '/js/player.js', __FILE__ ));
-wp_localize_script( 'aplayer-js', 'phpdata', array(
-    'pluginsUrl' => plugins_url('',__FILE__),
-));
-wp_enqueue_style( 'aplayer-css', plugins_url( '/css/player.css', __FILE__ ));
+add_action( 'wp_enqueue_scripts', 'aplayer_scripts' );
+add_action( 'wp_enqueue_styles', 'aplayer_styles' );
+function aplayer_scripts(){
+    wp_enqueue_script( 'aplayer-js', plugins_url( '/js/player.js', __FILE__ ));
+    wp_localize_script( 'aplayer-js', 'phpdata', array(
+        'pluginsUrl' => plugins_url('',__FILE__),
+    ));
+    wp_enqueue_style( 'aplayer-css', plugins_url( '/css/player.css', __FILE__ ));
+}
 
 include( plugin_dir_path( __FILE__ ) . 'options.php');
 
