@@ -9,6 +9,157 @@ function my_plugin_menu() {
 
 /** Step 3. */
 function aplayer_options($content) {
+	$generator = "<div class='agen'>";
+	$generator = "
+<h1 id=''>Asayake (Sunrise) Player</h1>
+<div class='aplayer-help' style='text-align:center;'>
+<h2>Shortcode Generator</h2>
+Type:
+<select id='agen-type' onchange='updateType(value)'>
+	<option value='stand-alone'>Stand Alone</option>
+	<option value='playlist'>Playlist</option>
+</select>
+
+<div id='agen-playlist' class='hidden'>
+	<input type='text' id='agen-id' placeholder='Unique Playlist ID (REQUIRED)' oninput='updateSA_SC(\"playlistID\",value)'><hr>
+	<input type='text' id='agen-title' placeholder='Title (SUGGESTED)' oninput='updateSA_SC(\"title\",value)'><br>
+	<input type='text' id='agen-artist' placeholder='Artist (SUGGESTED)' oninput='updateSA_SC(\"artist\",value)'><br>
+	<input type='text' id='agen-album' placeholder='Album (SUGGESTED)' oninput='updateSA_SC(\"album\",value)'><br>
+	<input type='url' id='agen-url' placeholder='URL (REQUIRED)' oninput='updateSA_SC(\"url\",value)'><br>
+	<span onclick='newTrack()' class='agen-new-track'>+ Add Another Track</span>
+</div>
+
+<div id='agen-stand-alone' class='hidden'>
+	<input type='text' id='agen-title' placeholder='Title' oninput='updateSA_SC(\"title\",value)'><br>
+	<input type='text' id='agen-artist' placeholder='Artist' oninput='updateSA_SC(\"artist\",value)'><br>
+	<input type='text' id='agen-album' placeholder='Album' oninput='updateSA_SC(\"album\",value)'><br>
+	<input type='url' id='agen-url' placeholder='URL (REQUIRED)' oninput='updateSA_SC(\"url\",value)'><br>
+</div>
+<textarea id='agen-sc' readonly rows='10'>
+[ aplayer url=\"\" artist=\"\" album=\"\" title=\"\" ]
+</textarea>
+<hr>
+<a href='https://github.com/matdombrock/Asayake-Player'>Need More Help?</a>
+</div><!--wrap-->
+<style>
+.agen-hidden{
+	visibility:none;
+}
+.agen-new-track{
+	color:#0073AA;
+	cursor:pointer;
+}
+.aplayer-help textarea, .aplayer-help input{
+	width:400px;
+}
+
+</style>
+	";
+	$generator .= "</div>";
+
+	$genScript = "
+<script>
+var cur_type = 'stand-alone';
+var sa_sc = {//stand alone shortcode data
+	playlistID: '',
+	title: '',
+	artist: '',
+	album: '',
+	url: '',
+};
+var p_sc = [];// playlist shortcode data
+function updateType(value){
+	//alert(value);
+	cur_type = value;
+	if(value=='stand-alone'){
+		document.getElementById('agen-stand-alone').classList.remove('hidden');
+		document.getElementById('agen-playlist').classList.add('hidden');
+	}else{
+		document.getElementById('agen-stand-alone').classList.add('hidden');
+		document.getElementById('agen-playlist').classList.remove('hidden');
+	}
+	generateSA_SC();
+}
+function updateSA_SC(type,value){
+	//document.getElementById('agen-sc').innerHTML = value;
+	if(type!=null&&value!=null){
+		sa_sc[type] = value;
+	}
+	generateSA_SC();
+}
+function generateSA_SC(){
+	var sc = '';
+	if(cur_type == 'playlist'){
+		sc += '[aplayer-playlist playlist_id=\"'+sa_sc[\"playlistID\"]+'\"]';
+	}else{
+		sc += '[ aplayer ';
+	}
+	if(p_sc.length > 0 && cur_type == 'playlist'){//do many\
+		for (i = 0; i < p_sc.length; i++) {
+			sc += '[ aplayer-playlist-item ';
+
+			sc += 'playlist_id=\"';
+			sc += p_sc[i][\"playlistID\"];
+			sc += '\" ';
+	
+			sc += 'url=\"';
+			sc += p_sc[i][\"url\"];
+			sc += '\" ';
+		
+			sc += 'artist=\"';
+			sc += p_sc[i][\"artist\"];
+			sc += '\" '; 
+		
+			sc += 'album=\"';
+			sc += p_sc[i][\"album\"];
+			sc += '\" '; 
+		
+			sc += 'title=\"';
+			sc += p_sc[i][\"title\"];
+			sc += '\" '; 
+		
+			sc += ']'; 
+		}
+	}
+	//do current
+	if(cur_type == 'playlist'){
+		sc += '[ aplayer-playlist-item ';
+		sc += 'playlist_id=\"';
+		sc += sa_sc[\"playlistID\"];
+		sc += '\" ';
+	}
+	sc += 'url=\"';
+	sc += sa_sc[\"url\"];
+	sc += '\" ';
+
+	sc += 'artist=\"';
+	sc += sa_sc[\"artist\"];
+	sc += '\" '; 
+
+	sc += 'album=\"';
+	sc += sa_sc[\"album\"];
+	sc += '\" '; 
+
+	sc += 'title=\"';
+	sc += sa_sc[\"title\"];
+	sc += '\" '; 
+
+	sc += ']'; 
+
+	document.getElementById('agen-sc').innerHTML = sc;
+}
+function newTrack(){
+	p_sc.push(sa_sc);
+	document.getElementById('agen-title').value = '';
+	document.getElementById('agen-album').value = '';
+	document.getElementById('agen-artist').value = '';
+	document.getElementById('agen-url').value = '';
+	generateSA_SC();
+}
+updateType('stand-alone');
+</script>	
+	";
+
 	$content = '
 <div class="aplayer-help">
 <h1 id="asayakesunriseplayer">Asayake (Sunrise) Player</h1>
@@ -60,16 +211,16 @@ function aplayer_options($content) {
 <p><em>The playlist tracks will show up in the order they are inserted into the page, with the first track loading by default.</em></p>
 </div>
 <style>
-.aplayer-help textarea{
-	width:400px;
-}
+
 </style>
 ';
 	if ( !current_user_can( 'manage_options' ) )  {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
 	echo '<div class="wrap">';
-	echo $content;
+	echo $generator;
+	echo $genScript;
+	//echo $content;
 	echo '</div>';
 
 }
