@@ -30,10 +30,10 @@ Type:
 </div>
 
 <div id='agen-stand-alone' class='hidden'>
-	<input type='text' id='agen-title' placeholder='Title' oninput='updateSA_SC(\"title\",value)'><br>
-	<input type='text' id='agen-artist' placeholder='Artist' oninput='updateSA_SC(\"artist\",value)'><br>
-	<input type='text' id='agen-album' placeholder='Album' oninput='updateSA_SC(\"album\",value)'><br>
-	<input type='url' id='agen-url' placeholder='URL (REQUIRED)' oninput='updateSA_SC(\"url\",value)'><br>
+	<input type='text' id='agen-title-p' placeholder='Title' oninput='updateSA_SC(\"title\",value)'><br>
+	<input type='text' id='agen-artist-p' placeholder='Artist' oninput='updateSA_SC(\"artist\",value)'><br>
+	<input type='text' id='agen-album-p' placeholder='Album' oninput='updateSA_SC(\"album\",value)'><br>
+	<input type='url' id='agen-url-p' placeholder='URL (REQUIRED)' oninput='updateSA_SC(\"url\",value)'><br>
 </div>
 <textarea id='agen-sc' readonly rows='10'>
 [ aplayer url=\"\" artist=\"\" album=\"\" title=\"\" ]
@@ -50,7 +50,9 @@ Type:
 	cursor:pointer;
 }
 .aplayer-help textarea, .aplayer-help input{
-	width:400px;
+	width:600px;
+	font-size:1.2rem;
+	padding:0.5rem;
 }
 
 </style>
@@ -70,6 +72,13 @@ var sa_sc = {//stand alone shortcode data
 var p_sc = [];// playlist shortcode data
 function updateType(value){
 	//alert(value);
+	if(cur_type!=value){
+		clearFields();
+		if(value=='playlist'){
+			document.getElementById('agen-id').value = '';
+			p_sc = [];
+		}
+	}
 	cur_type = value;
 	if(value=='stand-alone'){
 		document.getElementById('agen-stand-alone').classList.remove('hidden');
@@ -150,11 +159,25 @@ function generateSA_SC(){
 }
 function newTrack(){
 	p_sc.push(sa_sc);
+	clearFields();
+	generateSA_SC();
+}
+function clearFields(){
 	document.getElementById('agen-title').value = '';
 	document.getElementById('agen-album').value = '';
 	document.getElementById('agen-artist').value = '';
 	document.getElementById('agen-url').value = '';
-	generateSA_SC();
+	document.getElementById('agen-title-p').value = '';
+	document.getElementById('agen-album-p').value = '';
+	document.getElementById('agen-artist-p').value = '';
+	document.getElementById('agen-url-p').value = '';
+	sa_sc = {//stand alone shortcode data
+		playlistID: '',
+		title: '',
+		artist: '',
+		album: '',
+		url: '',
+	};
 }
 updateType('stand-alone');
 </script>	
