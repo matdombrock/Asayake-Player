@@ -11,7 +11,7 @@ function my_plugin_menu() {
 function aplayer_options($content) {
 	$generator = "<div class='agen'>";
 	$generator = "
-<h1 id=''>Asayake (Sunrise) Player</h1>
+<h1 id=''>Asayake Player</h1>
 <div class='aplayer-help' style='text-align:center;'>
 <h2>Shortcode Generator</h2>
 Type:
