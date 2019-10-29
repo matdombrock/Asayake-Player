@@ -23,7 +23,7 @@ function aplayer_admin_scripts(){
 
 include( plugin_dir_path( __FILE__ ) . 'options.php');
 
-include( plugin_dir_path( __FILE__ ) . 'shortcodes.php');
+include( plugin_dir_path( __FILE__ ) . 'scGenerator.php');
 add_shortcode('aplayer', 'aplayerShortcode');
 add_shortcode('aplayer-playlist', 'aplayerShortcodePlaylist');
 add_shortcode('aplayer-playlist-item', 'aplayerShortcodePlaylistItem');
