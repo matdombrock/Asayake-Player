@@ -21,9 +21,9 @@ function aplayer_admin_scripts(){
     wp_enqueue_style( 'aplayer-css', plugins_url( '/css/scGenerator.css', __FILE__ ));
 }
 
-include( plugin_dir_path( __FILE__ ) . 'options.php');
-
 include( plugin_dir_path( __FILE__ ) . 'scGenerator.php');
+
+include( plugin_dir_path( __FILE__ ) . 'shortcodes.php');
 add_shortcode('aplayer', 'aplayerShortcode');
 add_shortcode('aplayer-playlist', 'aplayerShortcodePlaylist');
 add_shortcode('aplayer-playlist-item', 'aplayerShortcodePlaylistItem');
