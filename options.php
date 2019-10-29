@@ -42,29 +42,8 @@ Type:
 <hr>
 <a href='https://github.com/matdombrock/Asayake-Player'>Need More Help?</a>
 </div><!--wrap-->
-<style>
-.agen-hidden{
-	visibility:none;
-}
-.agen-new-track{
-	color:#0073AA;
-	cursor:pointer;
-}
-.aplayer-help textarea, .aplayer-help input{
-	width:600px;
-	font-size:1.2rem;
-	padding:0.5rem;
-}
-
-</style>
 	";
 	$generator .= "</div>";
-
-	$genScript = "
-<script>
-
-</script>	
-	";
 
 	$content = '
 <div class="aplayer-help">
@@ -125,9 +104,6 @@ Type:
 	}
 	echo '<div class="wrap">';
 	echo $generator;
-	echo $genScript;
-	//echo $content;
 	echo '</div>';
-
 }
 ?>
