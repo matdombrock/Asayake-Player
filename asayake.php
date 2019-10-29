@@ -18,6 +18,7 @@ function aplayer_scripts(){
 }
 function aplayer_admin_scripts(){
     wp_enqueue_script( 'aplayer-scjs', plugins_url( '/js/scGenerator.js', __FILE__ ));
+    wp_enqueue_style( 'aplayer-css', plugins_url( '/css/scGenerator.css', __FILE__ ));
 }
 
 include( plugin_dir_path( __FILE__ ) . 'options.php');
