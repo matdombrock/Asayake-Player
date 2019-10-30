@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Asayake Player
- * Plugin URI: https://github.com/matdombrock/Asayake-Player
+ * Plugin URI: https://www.matdombrock.com/asayake-player/
  * Description: A simple, modular and highly customizable HTML 5 audio player for WordPress with support for playlists. 
  * Version: 1.0.2
  * Author: Mathieu Dombrock
- * Author URI: https://mzero.space
+ * Author URI: https://matdombrock.com
  */
 add_action( 'wp_enqueue_scripts', 'aplayer_scripts' );
 add_action( 'admin_enqueue_scripts', 'aplayer_admin_scripts' );

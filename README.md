@@ -6,6 +6,7 @@ A simple, modular and highly customizable HTML 5 audio player for WordPress with
 * Supports files directly from your WordPress install any other URL.
 * No configuration required.
 * Easy to use shortcodes.
+* Shortcode Generator.
 * Full support for both playlists & stand-alone players.
 * Playlists automatically play the next song on the list.
 * Supports timeline scrubbing.
