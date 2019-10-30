@@ -9,6 +9,7 @@
  */
 add_action( 'wp_enqueue_scripts', 'aplayer_scripts' );
 add_action( 'admin_enqueue_scripts', 'aplayer_admin_scripts' );
+
 function aplayer_scripts(){
     wp_enqueue_script( 'aplayer-js', plugins_url( '/js/player.js', __FILE__ ));
     wp_localize_script( 'aplayer-js', 'phpdata', array(

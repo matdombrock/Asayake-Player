@@ -38,11 +38,11 @@ function generateSA_SC(){
 	if(cur_type == 'playlist'){
 		sc += '[aplayer-playlist playlist_id="'+sa_sc["playlistID"]+'"]';
 	}else{
-		sc += '[ aplayer ';
+		sc += '[aplayer ';
 	}
 	if(p_sc.length > 0 && cur_type == 'playlist'){//do many
 		for (i = 0; i < p_sc.length; i++) {
-			sc += '[ aplayer-playlist-item ';
+			sc += '[aplayer-playlist-item ';
 
 			sc += 'playlist_id="';
 			sc += p_sc[i]["playlistID"];
@@ -62,14 +62,14 @@ function generateSA_SC(){
 		
 			sc += 'title="';
 			sc += p_sc[i]["title"];
-			sc += '" '; 
+			sc += '"'; 
 		
 			sc += ']'; 
 		}
 	}
 	//do current
 	if(cur_type == 'playlist'){
-		sc += '[ aplayer-playlist-item ';
+		sc += '[aplayer-playlist-item ';
 		sc += 'playlist_id="';
 		sc += sa_sc["playlistID"];
 		sc += '" ';
@@ -88,7 +88,7 @@ function generateSA_SC(){
 
 	sc += 'title="';
 	sc += sa_sc["title"];
-	sc += '" '; 
+	sc += '"'; 
 
 	sc += ']'; 
 
