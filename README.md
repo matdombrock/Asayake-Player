@@ -3,6 +3,7 @@ A simple, modular and highly customizable HTML 5 audio player for WordPress with
 
 ![screenshot](https://github.com/matdombrock/asayake-player/blob/master/img/aplayer.png?raw=true)
 ## Features
+* **Built-in shortcode creation interface**.
 * Supports files directly from your WordPress install any other URL.
 * No configuration required.
 * Easy to use shortcodes.
