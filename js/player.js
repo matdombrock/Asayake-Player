@@ -159,9 +159,10 @@ var aplayer = function(){
         var ret = "";
         if(title!=null && title!=""){
             ret += "<div><strong id='"+playerID+"-title' class='aplayer-title'>"+title;
-            if(artist!== undefined && artist!=='undefined'){
-              ret += " - "+artist+"</strong></div>";
+            if(artist!== ''){
+              ret += " - "+artist;
             }
+            ret += "</strong></div>";
             ret += "<div style='font-size:0.8rem;' id='"+playerID+"-album' class='aplayer-album'>"+album+"</div>";
             ret += "<br>";
         }
