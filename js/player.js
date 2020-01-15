@@ -36,31 +36,21 @@ var aplayer = function(){
         }
     }
     this.playlist_loadTrack = function(playlistID, playlistItemIndex, autoplay=true){
-        //console.log("Loading Track To: "+playlistID);
-        //console.log("Playlist Item Element: "+playlistItemElement);
         url = this.playlists[playlistID][playlistItemIndex].url;
         artist = this.playlists[playlistID][playlistItemIndex].artist;
         title = this.playlists[playlistID][playlistItemIndex].title;
         album = this.playlists[playlistID][playlistItemIndex].album;
-        //console.log("URL: "+url);
-        //console.log("ARTIST: "+artist);
-        //console.log("TITLE: "+title);
-        //console.log("ALBUM: "+album);
 
         var self = this;
         document.getElementById(playlistID).addEventListener('ended', function(event){
             self.stateStop(playlistID);
-            //console.log(title+" ended playback!");
             var newIndex = -1;
-            //console.log("Current playlist Index: "+playlistItemIndex);
             if(playlistItemIndex < self.playlists[playlistID].length -1){
                 newIndex = playlistItemIndex + 1;
-                //console.log("Loading New Index: "+newIndex);
                 self.playlist_loadTrack(playlistID, newIndex);
             }
         })
 
-        //this.render_activePlaylistItemHighlight(playlistItemElement);
         this.render_activePlaylistItemHighlight(playlistID, playlistItemIndex);
 
         this.stateStop(playlistID);
@@ -73,11 +63,9 @@ var aplayer = function(){
 
     }
     this.scrubStart = function(id){
-        //console.log("Start Scrubbing");
         this.scrubbing = id;
     }
     this.scrubStop = function(){
-        //console.log("Stop Scrubbing");
         this.scrubbing = "none";
     }
     this.scrubSet = function(id){
@@ -91,7 +79,6 @@ var aplayer = function(){
 
     this.stateToggle = function(id){
         var player = document.getElementById(id);
-        //console.log('toggling player: '+id);
         if(player.paused){
             this.statePlay(id);
         }else{
@@ -99,7 +86,6 @@ var aplayer = function(){
         }
     }
     this.statePlay = function(id){
-        //console.log('playing: '+id);
         this.activePlayerId = id;
         var player = document.getElementById(id);
         var ppBtn = document.getElementById(id+'-pp');
@@ -114,7 +100,6 @@ var aplayer = function(){
         }
     }
     this.statePause = function(id){
-        //console.log('pausing: '+id);
         var player = document.getElementById(id);
         var ppBtn = document.getElementById(id+'-pp');
         if(player.paused==false){
@@ -126,7 +111,6 @@ var aplayer = function(){
         alert("DONE PLAYING");
     }
     this.stateStop = function(id){
-        //console.log('stopping: '+id);
         var player = document.getElementById(id);
         player.currentTime = 0;
         this.statePause(id);
@@ -140,13 +124,11 @@ var aplayer = function(){
             return;
         }
         var cTime = this.updatePlayerUI_cTime(id);
-        //var tTime = this.updatePlayerUI_tTime(id);
         if(this.scrubbing!=id){
             var scrub_range = document.getElementById(id+"-scrub");
             scrub_range.value = cTime;
         }else{
             // if we are, do not try to change the scrub range value
-            //console.log("scrubbing");
         }
     }
     this.updatePlayerUI_cTime = function(id){
@@ -176,31 +158,31 @@ var aplayer = function(){
     this.generatePlayer = function(url,title,artist,album,playerID,isPlaylist = "false"){
         var ret = "";
         if(title!=null && title!=""){
-            ret += "<div><strong id='"+playerID+"-title'>"+title+" - "+artist+"</strong></div>";
-            ret += "<div style='font-size:0.8rem;' id='"+playerID+"-album'>"+album+"</div>";
+            ret += "<div><strong id='"+playerID+"-title' class='aplayer-title'>"+title+" - "+artist+"</strong></div>";
+            ret += "<div style='font-size:0.8rem;' id='"+playerID+"-album' class='aplayer-album'>"+album+"</div>";
             ret += "<br>";
         }
         
-        ret += "<audio id='"+playerID+"' preload='metadata' onloadedmetadata='aplayerInstance.initPlayer(\""+playerID+"\");' xonended='aplayerInstance.stateFinishedPlaying(\"TEST\")';>";//was oncanplay
+        ret += "<audio id='"+playerID+"' preload='metadata' onloadedmetadata='aplayerInstance.initPlayer(\""+playerID+"\");'>";//was oncanplay
         ret += "<source src='"+url+"' type='audio/mpeg'>";
         ret += "Your browser does not support the audio element.";
         ret += "</audio>";
 
-        ret += "<span class='aplayer-btn' id='"+playerID+"-pp' onclick='aplayerInstance.stateToggle(\""+playerID+"\")'> <img src='"+this.images["play"]+"'> </span>";
-        ret += "<span class='aplayer-btn' id='"+playerID+"-stop' onclick='aplayerInstance.stateStop(\""+playerID+"\")'><img src='"+this.images["stop"]+"'></span>";
+        ret += "<span class='aplayer-btn' id='"+playerID+"-pp' class='aplayer-pp' onclick='aplayerInstance.stateToggle(\""+playerID+"\")'> <img src='"+this.images["play"]+"'> </span>";
+        ret += "<span class='aplayer-btn' id='"+playerID+"-stop' class='aplayer-stop' onclick='aplayerInstance.stateStop(\""+playerID+"\")'><img src='"+this.images["stop"]+"'></span>";
         
-        ret += "<div style='float:right; font-size:1.5rem;'>";
+        ret += "<div style='float:right; font-size:1.5rem;' class='aplayer-time'>";
         ret += "<span id='"+playerID+"-ctime'>00:00</span>";
         ret += "/<span id='"+playerID+"-ttime'>00:00</span>";
         ret += "</div>";
 
         ret += "<br>";
-        ret += `<div id='`+playerID+`-scrub-wrap' style='width:100%;'>
+        ret += `<div id='`+playerID+`-scrub-wrap' class='aplayer-scrub' style='width:100%;'>
     <input class='aplayer-range' type='range' min='0' max='0' val='0'>
     </div>`;
 
         if(isPlaylist == "true"){
-            ret += "<div class='aplayer-playlist-wrap' id='"+playerID+"-playlist'>";
+            ret += "<div class='aplayer-playlist-wrap' class='aplayer-playlist' id='"+playerID+"-playlist'>";
             //ret += "";
             ret += "</div>";
         }
