@@ -158,7 +158,10 @@ var aplayer = function(){
     this.generatePlayer = function(url,title,artist,album,playerID,isPlaylist = "false"){
         var ret = "";
         if(title!=null && title!=""){
-            ret += "<div><strong id='"+playerID+"-title' class='aplayer-title'>"+title+" - "+artist+"</strong></div>";
+            ret += "<div><strong id='"+playerID+"-title' class='aplayer-title'>"+title;
+            if(artist!== undefined && artist!=='undefined'){
+              ret += " - "+artist+"</strong></div>";
+            }
             ret += "<div style='font-size:0.8rem;' id='"+playerID+"-album' class='aplayer-album'>"+album+"</div>";
             ret += "<br>";
         }
