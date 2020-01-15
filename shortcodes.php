@@ -5,7 +5,7 @@ function aplayerShortcode($atts){
     $title = $atts['title']??"";
     $album = $atts['album']??"";
 
-    $playerID = "aplayer_".uniqid();
+    $playerID = "aplayer_".$atts['id']??"aplayer_".uniqid();
 
     $safe_url = addslashes($url);
     $safe_artist = addslashes($artist);
